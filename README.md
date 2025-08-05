@@ -38,7 +38,7 @@ See code comments in `.py` files or notebooks for implementation details.
 - **Preprocessing**: StandardScaler on PDF features, tiktoken for prompt token limits (max 8000).
 - **Generation**: Run `CI-2025-01838n_LLM_embedding.ipynb` to create `HEA_Dataset_with_embeddings.csv`.
 - **Note**: Full dataset not included due to size/privacy; structure described in notebooks. Contact for access.
-- **Download**: The dataset is available for download at [link](https://example.com/HEA_Dataset.zip). Contact the author if access issues arise.
+- **Download**: The dataset is available for download at [link](https://drive.google.com/drive/folders/1mDQDMegAqvBPRxi0wFV2F87UPoHStLpP?usp=sharing). Contact the author if access issues arise.
 
 ## 🔧 Installation
 To set up and run the experiments:

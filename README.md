@@ -2,7 +2,7 @@
 
 Hybrid machine learning and large language model (LLM) framework for predicting Gibbs free energy in high-entropy alloys (HEAs) using Pair Distribution Function (PDF) data, compositional features, and fine-tuned GPT models. This repository supports the research paper "[Advancements in Gibbs Energy Prediction: A Machine Learning Approach with High Entropy Alloys]" by providing reproducible code for conventional ML baselines, transformer-based regression, LLM embedding generation, and fine-tuning/response retrieval. Achieves test R² of 0.9635 and MAE of 0.0332 with the hybrid model.
 
-## Overview
+## Content
 This project integrates PCA-reduced PDF data, GPT-4o embeddings, and transformer architectures to predict thermodynamic stability in FeCoNiCuZn HEAs for nitrate adsorption. Key components:
 - **Conventional ML**: Random Forest, Gradient Boosting, SVR, Linear Regression baselines.
 - **Transformer Model**: Combines PDF and LLM embeddings for regression.

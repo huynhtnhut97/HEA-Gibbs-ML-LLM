@@ -9,7 +9,7 @@ This project integrates PCA-reduced PDF data, GPT-4o embeddings, and transformer
 - **LLM Fine-Tuning**: Fine-tunes GPT-4.1-nano for interpretable Gibbs insights.
 - **Notebooks**: Data preprocessing, embedding generation, and model training/evaluation.
 
-Results highlight superior performance of the hybrid model, with t-SNE visualizations showing enhanced clustering of stable alloys. Code is versioned at https://github.com/huynhtnhut97/HEA-Gibbs-ML-LLM for reproducibility.
+Results highlight performance of the hybrid model, with t-SNE visualizations showing enhanced clustering of stable alloys. Code is versioned at https://github.com/huynhtnhut97/HEA-Gibbs-ML-LLM for reproducibility.
 
 ## Installation
 To set up and run the experiments:

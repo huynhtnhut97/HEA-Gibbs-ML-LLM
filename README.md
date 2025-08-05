@@ -9,7 +9,35 @@ This project integrates PCA-reduced PDF data, GPT-4o embeddings, and transformer
 - **LLM Fine-Tuning**: Fine-tunes GPT-4.1-nano for interpretable Gibbs insights.
 - **Notebooks**: Data preprocessing, embedding generation, and model training/evaluation.
 
-Results highlight performance of the hybrid model, with t-SNE visualizations showing enhanced clustering of stable alloys. Code is versioned at https://github.com/huynhtnhut97/HEA-Gibbs-ML-LLM for reproducibility.
+Results highlight the performance of the hybrid model, with t-SNE visualizations showing enhanced clustering of stable alloys. Code is versioned at https://github.com/huynhtnhut97/HEA-Gibbs-ML-LLM for reproducibility.
+
+## Model Architecture
+The core model is a TransformerRegressor (implemented in PyTorch):
+- **Inputs**: PCA-reduced PDF features (50 components from 2980 g(r) values) and GPT-4o embeddings (1536 dimensions).
+- **Architecture**:
+  - PCA embedding: Linear layer (1 -> 64) for each PCA component.
+  - Embedding projection: Linear (1536 -> 64).
+  - Concatenation: [Projected embedding + PCA tokens] with positional encoding.
+  - Transformer Encoder: 2 layers, 8 heads, d_model=64.
+  - Regression Head: Linear (64 -> 1) on the first token output.
+- **Training**: MSE loss, Adam optimizer, 200 epochs, batch size 32.
+- **Classes**:
+  - **GPTFineTuner**: Manages dataset formatting (JSONL), upload, fine-tuning job creation, and evaluation (MAE on holdout).
+  - **LLMresponseder**: Retrieves responses from fine-tuned models/checkpoints, parsing JSON for metrics/IDs.
+
+See code comments in `.py` files or notebooks for implementation details.
+
+## Dataset Details
+- **Source**: Custom FeCoNiCuZn HEA dataset (1268 microstructures) from DFT calculations.
+- **Features**:
+  - Compositional: Fe, Co, Ni, Cu, Zn ratios (0-1).
+  - Active sites: Two categorical variables (e.g., "Co", "Fe").
+  - PDF: 2980 g(r) values (0.2-30 Å, 0.01 Å steps); PCA-reduced to 50 components (~95% variance).
+  - Embeddings: GPT-4o-generated from prompts (e.g., "Alloy composition: Fe=0.2, Co=0.2... Active sites: Co and Fe"), 1536 dimensions.
+  - Target: Gibbs free energy of nitrate adsorption (eV, range ~[-0.6, 0.6]).
+- **Preprocessing**: StandardScaler on PDF features, tiktoken for prompt token limits (max 8000).
+- **Generation**: Run `CI-2025-01838n_LLM_embedding.ipynb` to create `HEA_Dataset_with_embeddings.csv`.
+- **Note**: Full dataset not included due to size/privacy; structure described in notebooks. Contact for access.
 
 ## Installation
 To set up and run the experiments:

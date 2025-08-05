@@ -134,12 +134,6 @@ Run experiments via notebooks or Python classes:
 
 See code comments for detailed usage.
 
-## Contributing
-Fork, create a branch (`git checkout -b feature/experiment`), commit, and submit a pull request. Report issues on GitHub Issues. Test new features locally before pushing (e.g., `python gpt_fine_tuner.py`).
-
-## License
-MIT License—free to use/modify with attribution. See LICENSE file.
-
 ## Citation
 This repo supports "[Advancements in Gibbs Energy Prediction: A Machine Learning Approach with High Entropy Alloys]" (under review). Cite as:
 ```bibtex

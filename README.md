@@ -140,7 +140,7 @@ This repo supports "[Advancements in Gibbs Energy Prediction: A Machine Learning
 @article{huynh2025hea,
   title={Advancements in Gibbs Energy Prediction: A Machine Learning Approach with High Entropy Alloys},
   author={Huynh, Nhut and He, Xiang and Nguyen, Kim-Doang},
-  journal={Microporous and Mesoporous Materials},
+  journal={Journal of Chemical Information and Modeling},
   year={2025}
 }
 ```

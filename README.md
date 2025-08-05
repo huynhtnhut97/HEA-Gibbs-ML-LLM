@@ -11,7 +11,7 @@ This project integrates PCA-reduced PDF data, GPT-4o embeddings, and transformer
 
 Results highlight the performance of the hybrid model, with t-SNE visualizations showing enhanced clustering of stable alloys. Code is versioned at https://github.com/huynhtnhut97/HEA-Gibbs-ML-LLM for reproducibility.
 
-## Model Architecture
+## 🏗️ Model Architecture
 The core model is a TransformerRegressor (implemented in PyTorch):
 - **Inputs**: PCA-reduced PDF features (50 components from 2980 g(r) values) and GPT-4o embeddings (1536 dimensions).
 - **Architecture**:
@@ -27,7 +27,7 @@ The core model is a TransformerRegressor (implemented in PyTorch):
 
 See code comments in `.py` files or notebooks for implementation details.
 
-## Dataset Details
+## 💾 Dataset Details
 - **Source**: Custom FeCoNiCuZn HEA dataset (1268 microstructures) from DFT calculations.
 - **Features**:
   - Compositional: Fe, Co, Ni, Cu, Zn ratios (0-1).
@@ -39,7 +39,7 @@ See code comments in `.py` files or notebooks for implementation details.
 - **Generation**: Run `CI-2025-01838n_LLM_embedding.ipynb` to create `HEA_Dataset_with_embeddings.csv`.
 - **Note**: Full dataset not included due to size/privacy; structure described in notebooks. Contact for access.
 
-## Installation
+## 🔧 Installation
 To set up and run the experiments:
 
 1. **Clone the Repository**:
@@ -80,7 +80,7 @@ To set up and run the experiments:
      - Use PAT as password for `git push`.
    - Alternative: Set up SSH (generate key with `ssh-keygen -t ed25519`, add to GitHub, change remote to `git@github.com:huynhtnhut97/HEA-Gibbs-ML-LLM.git`).
 
-## Usage
+## 🚀 Usage
 Run experiments via notebooks or Python classes:
 
 1. **Notebooks**:
@@ -109,7 +109,7 @@ Run experiments via notebooks or Python classes:
    - Run Methodologies notebook to train on PCA-reduced PDF + embeddings.
    - Outputs saved in `models/` (e.g., best model with test loss 0.0014).
 
-## Experiments and Notebooks
+## 🧪 Experiments and Notebooks
 - **CI-2025-01838n_Methodologies.ipynb**:
   - Loads dataset, applies PCA (2980 g(r) features to 50 components, ~95% variance).
   - Trains conventional models (Random Forest: R² 0.9023, Gradient Boosting: R² 0.9074).
@@ -122,7 +122,7 @@ Run experiments via notebooks or Python classes:
 - Reproduce: Ensure data/ exists, run notebooks sequentially, set API key.
 - Experiments: Test PCA components (e.g., m=100), fine-tuning examples (50-100), or checkpoint selection.
 
-## Classes
+## 📚 Classes
 - **GPTFineTuner** (gpt_fine_tuner.py): Automates fine-tuning:
   - Builds JSONL from dataset (prompts + Gibbs responses).
   - Uploads to OpenAI, creates job, evaluates (MAE on holdout).
@@ -134,7 +134,7 @@ Run experiments via notebooks or Python classes:
 
 See code comments for detailed usage.
 
-## Citation
+## 🔗 Citation
 This repo supports "[Advancements in Gibbs Energy Prediction: A Machine Learning Approach with High Entropy Alloys]" (under review). Cite as:
 ```bibtex
 @article{huynh2025hea,

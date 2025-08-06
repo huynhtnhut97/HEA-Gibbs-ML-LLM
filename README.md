@@ -1,18 +1,14 @@
 # HEA-Gibbs-ML-LLM
 
-Hybrid machine learning and large language model (LLM) framework for predicting Gibbs free energy in high-entropy alloys (HEAs) using Pair Distribution Function (PDF) data, compositional features, and fine-tuned GPT models. This repository supports the research paper "[Advancements in Gibbs Energy Prediction: A Machine Learning Approach with High Entropy Alloys]" by providing reproducible code for conventional ML baselines, transformer-based regression, LLM embedding generation, and fine-tuning/response retrieval.
+Hybrid machine learning framework for predicting Gibbs free energy of nitrate adsorption on high-entropy alloys (HEAs) using Pair Distribution Function (PDF) data. This repository supports the research paper "[Predicting and Analyzing Nitrate Adsorption on High-Entropy Alloys Based on Pair Distribution Function using A Hybrid Machine Learning Framework]" by providing reproducible code for conventional ML, transformer-based regression, LLM embedding generation, and fine-tuning/response retrieval.
 
 ## 📄 Content
-This project integrates PCA-reduced PDF data, GPT-4o embeddings, and transformer architectures to predict thermodynamic stability in FeCoNiCuZn HEAs for nitrate adsorption. Key components:
-- **Conventional ML**: Random Forest, Gradient Boosting, SVR, Linear Regression baselines.
+- **Conventional ML**: Random Forest, Gradient Boosting, SVR, and Linear Regression.
 - **Transformer Model**: Combines PDF and LLM embeddings for regression.
-- **LLM Fine-Tuning**: Fine-tunes GPT-4.1-nano for interpretable Gibbs insights.
+- **LLM Fine-Tuning**: Fine-tunes GPT-4.1-nano for interpretable insights.
 - **Notebooks**: Data preprocessing, embedding generation, and model training/evaluation.
 
-Results highlight the performance of the hybrid model, with t-SNE visualizations showing enhanced clustering of stable alloys
-
 ## 🏗️ Model Architecture
-The core model is a TransformerRegressor (implemented in PyTorch):
 - **Inputs**: PCA-reduced PDF features (50 components from 2980 g(r) values) and GPT-4o embeddings (1536 dimensions).
 - **Architecture**:
   - PCA embedding: Linear layer (1 -> 64) for each PCA component.
@@ -25,19 +21,16 @@ The core model is a TransformerRegressor (implemented in PyTorch):
   - **GPTFineTuner**: Manages dataset formatting (JSONL), upload, fine-tuning job creation, and evaluation (MAE on holdout).
   - **LLMresponseder**: Retrieves responses from fine-tuned models/checkpoints, parsing JSON for metrics/IDs.
 
-See code comments in `.py` files or notebooks for implementation details.
-
 ## 💾 Dataset Details
-- **Source**: Custom FeCoNiCuZn HEA dataset (1268 microstructures) from DFT calculations.
+- **Source**: Dataset was established based on a prior [study](https://pubs.acs.org/doi/10.1021/acs.langmuir.4c01071).
 - **Features**:
-  - Compositional: Fe, Co, Ni, Cu, Zn ratios (0-1).
+  - Composition: Fe, Co, Ni, Cu, Zn ratios (0-1).
   - Active sites: Two categorical variables (e.g., "Co", "Fe").
   - PDF: 2980 g(r) values (0.2-30 Å, 0.01 Å steps); PCA-reduced to 50 components (~95% variance).
   - Embeddings: GPT-4o-generated from prompts (e.g., "Alloy composition: Fe=0.2, Co=0.2... Active sites: Co and Fe"), 1536 dimensions.
-  - Target: Gibbs free energy of nitrate adsorption (eV, range ~[-0.6, 0.6]).
+- **Target**: Gibbs free energy of nitrate adsorption (eV, range ~[-0.6, 0.6]).
 - **Preprocessing**: StandardScaler on PDF features, tiktoken for prompt token limits (max 8000).
 - **Generation**: Run `CI-2025-01838n_LLM_embedding.ipynb` to create `HEA_Dataset_with_embeddings.csv`.
-- **Note**: Full dataset not included due to size/privacy; structure described in notebooks. Contact for access.
 - **Download**: The dataset is available for download at [link](https://drive.google.com/drive/folders/1mDQDMegAqvBPRxi0wFV2F87UPoHStLpP?usp=sharing). Contact the author if access issues arise.
 
 ## 🔧 Installation
@@ -71,7 +64,7 @@ To set up and run the experiments:
      ```
 
 4. **Dataset Setup**:
-   - Place `HEA_Dataset.csv` in `data/` folder (not included due to size; structure includes ID, prompt, n_tokens, active_site_1, active_site_2, Fe, Co, Ni, Cu, Zn, Gibbs, and 2980 g(r) columns).
+   - Place `HEA_Dataset.csv` in `data/` folder (structure includes ID, prompt, n_tokens, active_site_1, active_site_2, Fe, Co, Ni, Cu, Zn, Gibbs, and 2980 g(r) columns).
    - Run `CI-2025-01838n_LLM_embedding.ipynb` to generate `HEA_Dataset_with_embeddings.csv`.
 
 5. **Git Authentication** (if pushing changes):
@@ -133,15 +126,13 @@ Run experiments via notebooks or Python classes:
   - Queries fine-tuned models/checkpoints for stability insights.
   - Example: "Gibbs -0.3 eV, high stability due to Fe."
 
-See code comments for detailed usage.
-
 ## 🔗 Citation
-This repo supports "[Advancements in Gibbs Energy Prediction: A Machine Learning Approach with High Entropy Alloys]" (under review). Cite as:
+This repo supports "[Predicting and Analyzing Nitrate Adsorption on High-Entropy Alloys Based on Pair Distribution Function using A Hybrid Machine Learning Framework]". Cite as:
 ```bibtex
 @article{huynh2025hea,
-  title={Advancements in Gibbs Energy Prediction: A Machine Learning Approach with High Entropy Alloys},
+  title={Predicting and Analyzing Nitrate Adsorption on High-Entropy Alloys Based on Pair Distribution Function using A Hybrid Machine Learning Framework},
   author={Huynh, Nhut and He, Xiang and Nguyen, Kim-Doang},
-  journal={Journal of Chemical Information and Modeling},
+  journal={Submitted to Journal of Chemical Information and Modeling},
   year={2025}
 }
 ```

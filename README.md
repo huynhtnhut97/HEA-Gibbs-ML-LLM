@@ -30,7 +30,7 @@ Hybrid machine learning framework for predicting Gibbs free energy of nitrate ad
   - Embeddings: GPT-4o-generated from prompts (e.g., "Alloy composition: Fe=0.2, Co=0.2... Active sites: Co and Fe"), 1536 dimensions.
 - **Target**: Gibbs free energy of nitrate adsorption (eV, range ~[-0.6, 0.6]).
 - **Preprocessing**: StandardScaler on PDF features, tiktoken for prompt token limits (max 8000).
-- **Generation**: Run `CI-2025-01838n_LLM_embedding.ipynb` to create `HEA_Dataset_with_embeddings.csv`.
+- **Generation**: Run `LLM_embedding.ipynb` to create `HEA_Dataset_with_embeddings.csv`.
 - **Download**: The dataset is available for download at [link](https://drive.google.com/drive/folders/1mDQDMegAqvBPRxi0wFV2F87UPoHStLpP?usp=sharing). Contact the author if access issues arise.
 
 ## 🔧 Installation
@@ -65,7 +65,7 @@ To set up and run the experiments:
 
 4. **Dataset Setup**:
    - Place `HEA_Dataset.csv` in `data/` folder (structure includes ID, prompt, n_tokens, active_site_1, active_site_2, Fe, Co, Ni, Cu, Zn, Gibbs, and 2980 g(r) columns).
-   - Run `CI-2025-01838n_LLM_embedding.ipynb` to generate `HEA_Dataset_with_embeddings.csv`.
+   - Run `LLM_embedding.ipynb` to generate `HEA_Dataset_with_embeddings.csv`.
 
 5. **Git Authentication** (if pushing changes):
    - Generate a Personal Access Token (PAT) on GitHub:
@@ -79,8 +79,8 @@ Run experiments via notebooks or Python classes:
 
 1. **Notebooks**:
    - Start Jupyter: `jupyter notebook`.
-   - `CI-2025-01838n_Methodologies.ipynb`: Preprocesses PDF data (PCA to 50 components), trains/tests conventional ML and transformer models, saves best model (e.g., model_20250226_141802_loss_0.0014.pth).
-   - `CI-2025-01838n_LLM_embedding.ipynb`: Generates GPT-4o embeddings from compositional prompts, saves enhanced dataset.
+   - `Methodologies.ipynb`: Preprocesses PDF data (PCA to 50 components), trains/tests conventional ML and transformer models, saves best model (e.g., model_20250226_141802_loss_0.0014.pth).
+   - `LLM_embedding.ipynb`: Generates GPT-4o embeddings from compositional prompts, saves enhanced dataset.
 
 2. **Python Classes** (save as `gpt_fine_tuner.py` and `llm_responseder.py`):
    - **GPTFineTuner**: Manages LLM fine-tuning workflow (dataset creation, upload, job creation, evaluation).
@@ -104,12 +104,12 @@ Run experiments via notebooks or Python classes:
    - Outputs saved in `models/` (e.g., best model with test loss 0.0014).
 
 ## 🧪 Experiments and Notebooks
-- **CI-2025-01838n_Methodologies.ipynb**:
+- **Methodologies.ipynb**:
   - Loads dataset, applies PCA (2980 g(r) features to 50 components, ~95% variance).
   - Trains conventional models (Random Forest: R² 0.9023, Gradient Boosting: R² 0.9074).
   - Trains transformer (200 epochs, achieves R² 0.9635, MAE 0.0332).
   - Tests: Reproduce by running cells; adjust epochs (default 200) or PCA components (default 50).
-- **CI-2025-01838n_LLM_embedding.ipynb**:
+- **LLM_embedding.ipynb**:
   - Generates prompts (e.g., "Alloy composition: Fe=0.2, Co=0.2..."), computes GPT-4o embeddings.
   - Saves dataset with embeddings for downstream modeling.
   - Tests: Run with subset (10 samples) to verify token limits (max 8000).
